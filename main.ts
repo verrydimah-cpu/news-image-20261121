@@ -1,34 +1,29 @@
-// news-image-20261121 — "The World in One Picture", Saturday 21 November 2026.
+// The World in One Picture — Saturday 21 November 2026.
 //
-// The whole entry is one pre-rendered image, entry.png, committed beside
-// this file. The poster was drawn once, deterministically, by the build
-// pipeline in this repo (poster.html + render.mjs + sharpen_hero.py) and
-// frozen as a PNG; this program's only job is to deliver those exact
-// bytes into the output directory, so every run — in the grader's
-// container or anywhere else — produces the identical file.
-//
-// The output directory comes from MAKEFUN_OUTPUT_DIR when set and is
-// /output otherwise. It is created if missing and never removed: in the
-// grader it is a mounted volume, and deleting the mount point itself
-// would fail the run.
-//
-// Run it:
-//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// The finished poster for this entry is committed beside this program as
+// entry.png. The program's job is simply to deliver that image to the
+// place the grader reads: a file named entry.png inside the output
+// directory. The output directory is taken from MAKEFUN_OUTPUT_DIR when
+// the harness provides it, and defaults to /output otherwise.
 
-import { copyFileSync, existsSync, mkdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { copyFileSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const here = dirname(fileURLToPath(import.meta.url));
-const source = join(here, 'entry.png');
-if (!existsSync(source)) {
-  console.error(`entry.png is missing beside main.ts (looked in ${here})`);
-  process.exit(1);
+// Deliver the committed poster into the output directory. Copying a
+// fixed file keeps repeat runs byte-identical, as the grader requires.
+function deliverPoster(): void {
+  // Find the image relative to this program, not the caller's cwd.
+  const programDir = dirname(fileURLToPath(import.meta.url));
+  const posterPath = join(programDir, "entry.png");
+
+  const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
+
+  // Create the output directory if it is missing; never delete it or
+  // anything inside it.
+  mkdirSync(outputDir, { recursive: true });
+
+  copyFileSync(posterPath, join(outputDir, "entry.png"));
 }
 
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
-mkdirSync(outDir, { recursive: true });
-
-const target = join(outDir, 'entry.png');
-copyFileSync(source, target);
-console.log(`entry.png -> ${target}`);
+deliverPoster();
