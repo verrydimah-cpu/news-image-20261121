@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The World in One Picture — Saturday 21 November 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1024px; height: 1024px; }
+  body {
+    font-family: "Liberation Sans", "Helvetica Neue", Arial, sans-serif;
+    background: #ddd0ac;
+    color: #1a1c22;
+  }
+  .poster {
+    width: 1024px; height: 1024px;
+    padding: 16px 24px 14px;
+    display: flex; flex-direction: column;
+    background:
+      radial-gradient(1180px 640px at 50% -80px, #faf3df 0%, #f1e7cb 52%, #e6d7b4 100%);
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    flex: none;
+    height: 92px; overflow: hidden; text-align: center;
+    border-bottom: 7px double #232733;
+    padding-top: 2px;
+  }
+  .kicker {
+    font-size: 15px; font-weight: 700; letter-spacing: 9px; color: #1d6a4a;
+  }
+  .dateline {
+    margin-top: 5px;
+    font-size: 47px; font-weight: 900; letter-spacing: .5px; line-height: 1.05;
+    text-shadow: 0 2px 0 rgba(26,28,34,.13);
+  }
+  .dateline .red { color: #b3271e; }
+  .dateline .mid { color: #8a8f9c; font-weight: 400; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    flex: none;
+    margin-top: 10px;
+    border: 3px solid #232733;
+    background: #060a16;
+    box-shadow: 0 16px 30px rgba(26,28,34,.40), 0 4px 0 rgba(26,28,34,.22);
+  }
+  .hero-art { position: relative; height: 300px; overflow: hidden; background: #0a1224; }
+  .hero-art canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+    filter: blur(0.4px) saturate(1.16) contrast(1.05);
+  }
+  .hero-art .shade {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(4,6,12,.26) 0%, rgba(4,6,12,0) 20%),
+      radial-gradient(125% 96% at 50% 42%, rgba(0,0,0,0) 55%, rgba(5,7,13,.40) 100%);
+  }
+  .chip {
+    position: absolute; z-index: 3;
+    background: rgba(6,12,20,.86); color: #f3ecd9;
+    font-size: 12px; font-weight: 700; letter-spacing: 1.7px;
+    padding: 4px 9px 3px; border: 1px solid rgba(255,255,255,.45); border-radius: 2px;
+    box-shadow: 0 2px 7px rgba(0,0,0,.5); white-space: nowrap;
+  }
+  .chip.hot { background: rgba(150,32,22,.92); }
+  #chipTalks { top: 13px; left: 15px; }
+  #chipDeal { top: 46%; right: 16px; }
+  .hero-caption {
+    background: linear-gradient(#fbf6e8, #f3ecd7);
+    border-top: 3px solid #232733;
+    padding: 8px 18px 10px;
+  }
+  .hero-kicker { font-size: 12.5px; font-weight: 700; letter-spacing: 3.2px; color: #92680f; }
+  .hero-headline { font-size: 40px; font-weight: 900; line-height: 1.0; letter-spacing: .2px; margin-top: 2px; }
+  .hero-headline .red { color: #b3271e; }
+  .hero-sub { margin-top: 4px; font-size: 15.5px; line-height: 1.32; color: #2b3542; }
+
+  /* ---------- panels ---------- */
+  .row { flex: none; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 11px; margin-top: 10px; }
+  .panel {
+    height: 184px; overflow: hidden;
+    background: linear-gradient(#fffdf6, #f7efdb);
+    border: 2.5px solid #232733;
+    box-shadow: 7px 9px 0 rgba(26,28,34,.15), 0 10px 18px rgba(26,28,34,.12);
+    padding: 10px 13px 9px;
+  }
+  .tag {
+    display: inline-block; color: #fff;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.7px;
+    padding: 4px 9px 3px; border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(26,28,34,.25);
+  }
+  .panel h3 { font-size: 20.5px; font-weight: 900; line-height: 1.07; margin: 7px 0 5px; }
+  .panel p { font-size: 14.5px; line-height: 1.32; color: #2c3542; }
+  .panel p b { color: #1a1c22; }
+  .icon { float: right; margin: 1px 0 4px 10px; opacity: .92; }
+
+  /* ---------- ticker ---------- */
+  .ticker {
+    flex: none;
+    margin-top: auto;
+    background: linear-gradient(#14273d, #0b1624);
+    color: #f3ecd9;
+    border: 2.5px solid #060d16;
+    box-shadow: 7px 9px 0 rgba(26,28,34,.15);
+    padding: 9px 16px 10px;
+    font-size: 15px; font-weight: 700; line-height: 1.45; letter-spacing: .3px;
+  }
+  .ticker .wire { color: #ffb54d; letter-spacing: 2.5px; }
+  .ticker .dot { color: #ff5a3c; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <header class="masthead">
+    <div class="kicker">THE WORLD IN ONE PICTURE</div>
+    <div class="dateline">SATURDAY <span class="mid">·</span> <span class="red">21 NOVEMBER</span> 2026</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-art" id="heroArt">
+      <canvas id="gl" width="1940" height="600"></canvas>
+      <div class="shade"></div>
+      <div class="chip" id="chipTalks">TALKS IN OVERTIME</div>
+      <div class="chip hot" id="chipDeal">NO DEAL YET</div>
+    </div>
+    <div class="hero-caption">
+      <div class="hero-kicker">THE LEAD STORY — ANTALYA, TÜRKIYE</div>
+      <div class="hero-headline">DEADLOCK IN <span class="red">ANTALYA</span></div>
+      <p class="hero-sub">COP31 blows past its Friday deadline with <b>no deal in sight</b>: the closing plenary stands suspended, the draft text <b>erases every mention of fossil fuels</b> and drops the <b>$120B adaptation pledge</b> — and work crews are packing up the venue around the stranded negotiators.</p>
+    </div>
+  </section>
+
+  <section class="row">
+    <article class="panel">
+      <span class="tag" style="background:#33526e">GENEVA · UNITED NATIONS</span>
+      <svg class="icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#33526e" stroke-width="2">
+        <rect x="8" y="12" width="20" height="15" rx="3"/><path d="M18 12V6M18 6h.01"/><circle cx="14" cy="19" r="1.6" fill="#33526e"/><circle cx="22" cy="19" r="1.6" fill="#33526e"/><path d="M4 20v4M32 20v4"/>
+      </svg>
+      <h3>128 NATIONS TO DRAFT “KILLER ROBOT” RULES</h3>
+      <p>Talks end at <b>4:45 a.m.</b> with agreement to draft rules on <b>lethal autonomous weapons</b> over two years. Campaigners call it watered down: <b>no promise</b> of a binding treaty.</p>
+    </article>
+    <article class="panel">
+      <span class="tag" style="background:#7e1f1a">POLAND · NATO</span>
+      <svg class="icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#7e1f1a" stroke-width="2">
+        <path d="M18 4l10 3v9c0 7-4.5 12-10 16C12.5 28 8 23 8 16V7l10-3z"/><path d="M18 11l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6L18 11z"/>
+      </svg>
+      <h3>NATO CHIEF FLIES IN AS MISSILES LAND</h3>
+      <p><b>Rutte visits Poland</b> as Warsaw seeks more air defences. Two Russian missiles and a drone fell on Polish soil during the Kyiv barrage — <b>“a deliberate provocation”</b>, says Tusk.</p>
+    </article>
+    <article class="panel">
+      <span class="tag" style="background:#b36b00">EUROPE · YOUTH STRIKE</span>
+      <svg class="icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#b36b00" stroke-width="2">
+        <rect x="7" y="6" width="22" height="14" rx="2"/><path d="M18 20v10M12 30h12"/>
+      </svg>
+      <h3>GEN Z STRIKES ROLL INTO SATURDAY</h3>
+      <p>The youth day of action across <b>25+ countries</b> rolls on: an Italian <b>transport strike</b>, more marches in France and Spain over living costs, tuition and rearmament.</p>
+    </article>
+  </section>
+
+  <section class="row">
+    <article class="panel">
+      <span class="tag" style="background:#14666b">SEOUL · THE COURTS</span>
+      <svg class="icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#14666b" stroke-width="2">
+        <path d="M18 5v22M9 27h18M18 9l-6 2 6-2 6 2"/><path d="M12 11l-3.5 7a4.5 4.5 0 0 0 7 0L12 11zM24 11l-3.5 7a4.5 4.5 0 0 0 7 0L24 11z"/>
+      </svg>
+      <h3>SEOUL MOVES TO IMPEACH CHIEF JUSTICE</h3>
+      <p>The ruling party’s clash with the Supreme Court escalates after it <b>overturned ex-PM Han Duck-soo’s 15-year martial-law sentence</b> and ordered a retrial.</p>
+    </article>
+    <article class="panel">
+      <span class="tag" style="background:#1d6a4a">LONDON · BREXIT</span>
+      <svg class="icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#1d6a4a" stroke-width="2">
+        <circle cx="18" cy="18" r="4"/><circle cx="18" cy="6" r="1.7"/><circle cx="28.4" cy="12" r="1.7"/><circle cx="28.4" cy="24" r="1.7"/><circle cx="18" cy="30" r="1.7"/><circle cx="7.6" cy="24" r="1.7"/><circle cx="7.6" cy="12" r="1.7"/>
+      </svg>
+      <h3>BURNHAM “DETERMINED” TO REJOIN EU</h3>
+      <p>A senior ally says the prime minister wants Britain <b>back in the EU</b> in his lifetime, announcing <b>a year of talks</b> on the long-term relationship after Friday’s reset deals.</p>
+    </article>
+    <article class="panel">
+      <span class="tag" style="background:#5b3a8e">HEALTH · BARCELONA</span>
+      <svg class="icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#5b3a8e" stroke-width="2">
+        <rect x="6" y="13" width="24" height="11" rx="5.5" transform="rotate(-30 18 18)"/><path d="M15.3 13.2l5.4 9.6"/>
+      </svg>
+      <h3>CANCER PILL MAKES TUMOURS VANISH</h3>
+      <p>The pill <b>daraxonrasib</b> with chemotherapy shrank or cleared tumours in <b>6 of 10 patients</b> in a trial report — gone entirely in <b>1 in 12</b>. Doctors urge caution.</p>
+    </article>
+  </section>
+
+  <footer class="ticker">
+    <span class="wire">THE WIRE</span> &nbsp;COP31 IN OVERTIME, NO DEAL <span class="dot">•</span> RUTTE IN WARSAW <span class="dot">•</span> GEN Z STRIKES ROLL ON <span class="dot">•</span> GTA VI’S FIRST WEEKEND <span class="dot">•</span> GEORGIA MARKS DAY OF MOURNING SUNDAY <span class="dot">•</span> 128 NATIONS TO DRAFT ROBOT-WEAPON RULES
+  </footer>
+
+</div>
+
+<script>
+(() => {
+  'use strict';
+  /* Deterministic scene painter: every random choice comes from a
+     mulberry32 PRNG seeded with the edition date, so the artwork is the
+     same on every build. Canvas is 1940x600 (2x the 970x300 CSS box).
+     The scene: Antalya's waterfront before dawn on the morning the
+     climate talks ran into overtime — the Taurus mountains behind a
+     sleeping conference centre, its windows still lit, flags along the
+     promenade, packing crates and delegates with suitcases below. */
+  let seed = 20261121 >>> 0;
+  const rnd = () => {
+    seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const rr = (a, b) => a + rnd() * (b - a);
+
+  const cv = document.getElementById('gl');
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const SEA = 372;    /* horizon: where sky meets water */
+  const COAST = 470;  /* base line of the waterfront buildings */
+
+  const glow = (x, y, r, rgba) => {
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, rgba);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(x - r, y - r, r * 2, r * 2);
+  };
+
+  /* ----- sky: the last of the night giving way to dawn ----- */
+  const sky = ctx.createLinearGradient(0, 0, 0, SEA + 8);
+  sky.addColorStop(0, '#05081a');
+  sky.addColorStop(0.42, '#0d1b33');
+  sky.addColorStop(0.72, '#3c3350');
+  sky.addColorStop(0.92, '#8a5636');
+  sky.addColorStop(1, '#d9903f');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, W, SEA + 8);
+
+  /* stars, thinning toward the dawn */
+  for (let i = 0; i < 210; i++) {
+    const y = rnd() * 260;
+    ctx.fillStyle = `rgba(220,230,255,${(rr(0.10, 0.70) * (1 - y / 300)).toFixed(3)})`;
+    const s = rnd() < 0.12 ? 2.4 : 1.4;
+    ctx.fillRect(rnd() * W, y, s, s);
+  }
+
+  /* ----- crescent moon, upper left ----- */
+  glow(302, 86, 118, 'rgba(205,222,255,0.16)');
+  ctx.fillStyle = '#e9edf5';
+  ctx.beginPath(); ctx.arc(302, 86, 30, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = 'rgba(10,14,30,0.94)';
+  ctx.beginPath(); ctx.arc(316, 76, 26, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = 'rgba(190,200,225,0.30)';
+  ctx.beginPath(); ctx.arc(292, 96, 5, 0, Math.PI * 2); ctx.fill();
+
+  /* ----- high cloud, catching the first light ----- */
+  for (let i = 0; i < 9; i++) {
+    const cx = rnd() * W, cy = rr(24, 180), rx = rr(140, 330), ry = rr(10, 22);
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rx);
+    g.addColorStop(0, i % 3 === 0 ? 'rgba(216,140,80,0.13)' : 'rgba(8,10,20,0.30)');
+    g.addColorStop(1, 'rgba(8,10,20,0)');
+    ctx.save();
+    ctx.translate(cx, cy); ctx.scale(1, ry / rx); ctx.translate(-cx, -cy);
+    ctx.fillStyle = g;
+    ctx.fillRect(cx - rx, cy - rx, rx * 2, rx * 2);
+    ctx.restore();
+  }
+
+  /* ----- the Taurus mountains: two jagged ridges ----- */
+  const ridge = (baseY, amp, color) => {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(-20, SEA + 34);
+    let x = -20, y = baseY + rr(-amp, amp) * 0.3;
+    ctx.lineTo(x, y);
+    while (x < W + 20) {
+      const step = rr(34, 84);
+      const peak = baseY - amp * (0.25 + rnd() * 0.75);
+      ctx.lineTo(x + step * 0.5, peak);
+      ctx.lineTo(x + step, baseY + rr(-amp, amp) * 0.22);
+      x += step;
+    }
+    ctx.lineTo(W + 20, SEA + 34);
+    ctx.closePath(); ctx.fill();
+  };
+  ridge(322, 128, '#22314f');
+  ridge(352, 74, '#16233c');
+
+  /* dawn glow breaking behind the coast, centre-right */
+  ctx.globalCompositeOperation = 'lighter';
+  glow(1250, SEA + 6, 380, 'rgba(255,146,52,0.42)');
+  glow(1250, SEA + 6, 150, 'rgba(255,196,110,0.48)');
+  ctx.globalCompositeOperation = 'source-over';
+  /* a bright band of first light lying along the horizon */
+  const dawnBand = ctx.createLinearGradient(0, SEA - 46, 0, SEA + 4);
+  dawnBand.addColorStop(0, 'rgba(255,166,77,0)');
+  dawnBand.addColorStop(1, 'rgba(255,166,77,0.30)');
+  ctx.fillStyle = dawnBand;
+  ctx.fillRect(0, SEA - 46, W, 50);
+
+  /* ----- the sea ----- */
+  const water = ctx.createLinearGradient(0, SEA, 0, H);
+  water.addColorStop(0, '#233d55');
+  water.addColorStop(0.3, '#0d1a2c');
+  water.addColorStop(1, '#05080f');
+  ctx.fillStyle = water;
+  ctx.fillRect(0, SEA, W, H - SEA);
+
+  /* ----- the waterfront: silhouette blocks on the coast line ----- */
+  const blocks = [];
+  const block = (x, w, top, density) => {
+    ctx.fillStyle = '#0a1322';
+    ctx.fillRect(x, top, w, COAST - top);
+    blocks.push([x, top, w, density]);
+  };
+  block(96, 128, 302, 0.30);          /* hotel towers, left */
+  block(238, 104, 276, 0.26);
+  block(1506, 118, 292, 0.28);        /* hotel towers, right */
+  block(1640, 150, 318, 0.32);
+  block(560, 880, 336, 0.52);         /* the conference centre */
+
+  /* the conference centre's low curved roof + dome */
+  ctx.fillStyle = '#0a1322';
+  ctx.beginPath();
+  ctx.ellipse(1000, 336, 452, 18, 0, Math.PI, 0);
+  ctx.fill();
+  ctx.beginPath(); ctx.arc(1000, 332, 40, Math.PI, 0); ctx.fill();
+  ctx.fillRect(998, 270, 4, 24);
+  glow(1000, 266, 13, 'rgba(255,196,110,0.8)');
+  ctx.fillStyle = '#ffd9a0';
+  ctx.beginPath(); ctx.arc(1000, 266, 2.8, 0, Math.PI * 2); ctx.fill();
+  /* glass band under the roof: a breath of teal in the silhouette */
+  ctx.fillStyle = 'rgba(110,180,200,0.10)';
+  ctx.fillRect(566, 342, 868, 20);
+
+  /* minarets flanking the venue */
+  const minaret = (x, top) => {
+    ctx.fillStyle = '#0a1322';
+    ctx.fillRect(x - 5, top + 34, 10, COAST - top - 34);
+    ctx.fillRect(x - 11, top + 74, 22, 5);
+    ctx.fillRect(x - 11, top + 118, 22, 5);
+    ctx.beginPath();
+    ctx.moveTo(x - 8, top + 34); ctx.lineTo(x, top); ctx.lineTo(x + 8, top + 34);
+    ctx.closePath(); ctx.fill();
+    glow(x, top - 6, 10, 'rgba(255,220,160,0.75)');
+    ctx.fillStyle = '#ffe2ae';
+    ctx.beginPath(); ctx.arc(x, top - 6, 2.2, 0, Math.PI * 2); ctx.fill();
+  };
+  minaret(472, 232);
+  minaret(1472, 246);
+
+  /* lit windows: the talks ran all night, and it shows */
+  for (const [bx, by, bw, density] of blocks) {
+    for (let wy = by + 12; wy < COAST - 10; wy += 16) {
+      for (let wx = bx + 8; wx < bx + bw - 10; wx += 15) {
+        if (rnd() < density) {
+          ctx.fillStyle = rnd() < 0.8 ? 'rgba(255,214,150,0.95)' : 'rgba(190,228,238,0.9)';
+          ctx.fillRect(wx, wy, 6, 7);
+        }
+      }
+    }
+  }
+
+  /* facade piers over the window grid, so the hall reads as a building */
+  ctx.fillStyle = '#0a1322';
+  for (let px = 566; px < 1430; px += 92) ctx.fillRect(px, 336, 7, COAST - 336);
+  ctx.fillRect(560, 362, 880, 5);
+
+  /* the entrance: one bright doorway, light spilling on the promenade */
+  ctx.globalCompositeOperation = 'lighter';
+  glow(1000, COAST - 4, 86, 'rgba(255,190,105,0.5)');
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = '#ffdf9e';
+  ctx.fillRect(984, COAST - 26, 32, 26);
+  ctx.fillStyle = 'rgba(255,205,130,0.28)';
+  ctx.beginPath();
+  ctx.moveTo(984, COAST); ctx.lineTo(1016, COAST); ctx.lineTo(1052, COAST + 24); ctx.lineTo(948, COAST + 24);
+  ctx.closePath(); ctx.fill();
+
+  /* promenade strip the buildings stand on */
+  ctx.fillStyle = '#081020';
+  ctx.fillRect(0, COAST, W, 26);
+
+  /* ----- flags of the nations, still flying over an empty hall ----- */
+  const FLAG_COLORS = ['#c8433a', '#3a6fc8', '#e0a92e', '#3f9e58', '#e8e4da', '#2e8f9e', '#c86aa8', '#e07b2e', '#7a5fc0'];
+  ctx.globalAlpha = 0.92;
+  for (let i = 0; i < 9; i++) {
+    const fx = 612 + i * 97;
+    ctx.fillStyle = '#0a1322';
+    ctx.fillRect(fx, COAST - 38, 3, 38);
+    ctx.fillStyle = FLAG_COLORS[i];
+    ctx.beginPath();
+    ctx.moveTo(fx + 3, COAST - 38);
+    ctx.quadraticCurveTo(fx + 14, COAST - 41 + (i % 3) * 2, fx + 25, COAST - 36);
+    ctx.quadraticCurveTo(fx + 14, COAST - 31, fx + 3, COAST - 27);
+    ctx.closePath(); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  /* ----- palms along the promenade ----- */
+  const palm = (x, s) => {
+    ctx.strokeStyle = '#070d18';
+    ctx.lineWidth = 7 * s;
+    ctx.beginPath();
+    ctx.moveTo(x, COAST + 4);
+    ctx.quadraticCurveTo(x + 10 * s, COAST - 34 * s, x + 22 * s, COAST - 62 * s);
+    ctx.stroke();
+    ctx.lineWidth = 4.4 * s;
+    for (let f = 0; f < 6; f++) {
+      const a = -0.25 - f * 0.42;
+      const len = 44 * s;
+      ctx.beginPath();
+      ctx.moveTo(x + 22 * s, COAST - 62 * s);
+      ctx.quadraticCurveTo(
+        x + 22 * s + Math.cos(a) * len * 0.6, COAST - 62 * s + Math.sin(a) * len * 0.6 - 6,
+        x + 22 * s + Math.cos(a) * len, COAST - 62 * s + Math.sin(a) * len + 12 * s);
+      ctx.stroke();
+    }
+  };
+  palm(516, 1.0);
+  palm(1452, 0.9);
+  palm(196, 0.8);
+
+  /* ----- roof spotlights sweeping a sky with no one watching ----- */
+  ctx.globalCompositeOperation = 'lighter';
+  const beam = (ax, ay, tx, ty) => {
+    const dx = tx - ax, dy = ty - ay, len = Math.hypot(dx, dy);
+    const px = (-dy / len) * 17, py = (dx / len) * 17;
+    const g = ctx.createLinearGradient(ax, ay, tx, ty);
+    g.addColorStop(0, 'rgba(200,224,255,0.13)');
+    g.addColorStop(1, 'rgba(200,224,255,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.moveTo(ax, ay); ctx.lineTo(tx + px, ty + py); ctx.lineTo(tx - px, ty - py);
+    ctx.closePath(); ctx.fill();
+  };
+  beam(742, 322, 420, 6);
+  beam(1258, 322, 1620, 2);
+  ctx.globalCompositeOperation = 'source-over';
+
+  /* ----- reflections: the lit coast doubled in the harbour ----- */
+  ctx.fillStyle = '#0a1322';
+  for (const [bx, by, bw] of blocks) {
+    ctx.globalAlpha = 0.20;
+    ctx.fillRect(bx + rr(-2, 2), COAST + 28, bw, (COAST - by) * 0.42);
+  }
+  ctx.globalAlpha = 1;
+  const glitter = (cx, color, count, spread0) => {
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    for (let i = 0; i < count; i++) {
+      const y = rr(COAST + 34, 592);
+      const spread = spread0 + (y - COAST) * 0.34;
+      ctx.globalAlpha = rr(0.06, 0.32);
+      const gx = cx + rr(-spread, spread);
+      ctx.beginPath(); ctx.moveTo(gx, y); ctx.lineTo(gx + rr(10, 54), y); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  };
+  glitter(1250, '#ffb35c', 130, 30);   /* dawn path on the water */
+  glitter(1000, '#ffd9a0', 54, 60);    /* the venue's lit windows */
+  glitter(300, '#cfe0ff', 30, 20);     /* moonlight, far left */
+
+  /* ----- foreground: the promenade edge, crates and last delegates -- */
+  ctx.fillStyle = '#04060a';
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  ctx.lineTo(0, 552);
+  let fx2 = 0;
+  while (fx2 < W) {
+    const seg = rr(60, 140), top = rr(544, 566);
+    ctx.lineTo(fx2, top);
+    ctx.lineTo(fx2 + seg, top);
+    fx2 += seg;
+  }
+  ctx.lineTo(W, H);
+  ctx.closePath(); ctx.fill();
+
+  /* packing crates: the venue is being boxed up mid-negotiation */
+  const crate = (x, y, w, h) => {
+    ctx.fillStyle = '#04060a';
+    ctx.fillRect(x, y, w, h);
+    ctx.strokeStyle = 'rgba(255,190,110,0.20)';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(x, y + 1); ctx.lineTo(x + w, y + 1); ctx.stroke();
+    ctx.strokeStyle = 'rgba(255,190,110,0.10)';
+    ctx.beginPath(); ctx.moveTo(x + 3, y + 3); ctx.lineTo(x + w - 3, y + h - 3); ctx.stroke();
+  };
+  crate(56, 522, 108, 78);
+  crate(84, 478, 84, 46);
+  crate(176, 540, 76, 60);
+  crate(1700, 530, 96, 70);
+  crate(1806, 492, 80, 108);
+  crate(1662, 552, 52, 48);
+
+  /* promenade lamps, still burning at dawn */
+  for (const lx of [430, 1560]) {
+    ctx.fillStyle = '#04060a';
+    ctx.fillRect(lx, 508, 4, 52);
+    ctx.fillRect(lx - 5, 504, 14, 4);
+    glow(lx + 2, 500, 26, 'rgba(255,190,105,0.5)');
+    ctx.fillStyle = '#ffdf9e';
+    ctx.beginPath(); ctx.arc(lx + 2, 500, 3.4, 0, Math.PI * 2); ctx.fill();
+  }
+
+  /* two delegates heading home, suitcases in tow */
+  const delegate = (x, flip) => {
+    ctx.fillStyle = '#04060a';
+    ctx.beginPath(); ctx.arc(x, 506, 9.5, 0, Math.PI * 2); ctx.fill();    /* head */
+    ctx.beginPath();                                                        /* coat */
+    ctx.moveTo(x - 8.5, 517); ctx.lineTo(x + 8.5, 517);
+    ctx.lineTo(x + 11, 556); ctx.lineTo(x - 11, 556);
+    ctx.closePath(); ctx.fill();
+    ctx.fillRect(x - 9.5, 556, 6, 20);                                      /* legs */
+    ctx.fillRect(x + 3.5, 556, 6, 20);
+    const sx = x + flip * 28;                                               /* suitcase */
+    ctx.strokeStyle = '#04060a'; ctx.lineWidth = 3.4;
+    ctx.beginPath(); ctx.moveTo(x + flip * 9, 532); ctx.lineTo(sx, 546); ctx.stroke();
+    ctx.fillRect(sx - 11, 546, 22, 30);
+    ctx.beginPath(); ctx.arc(sx - 5.5, 581, 3.4, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(sx + 5.5, 581, 3.4, 0, Math.PI * 2); ctx.fill();
+  };
+  delegate(706, 1);
+  delegate(1236, -1);
+
+  /* ----- painterly mottling over the whole scene ----- */
+  for (let i = 0; i < 330; i++) {
+    const cx = rnd() * W, cy = rnd() * H, r = rr(20, 95);
+    const dark = rnd() < 0.55;
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    g.addColorStop(0, dark ? `rgba(4,5,10,${rr(0.02, 0.055).toFixed(3)})` : `rgba(235,205,170,${rr(0.015, 0.04).toFixed(3)})`);
+    g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(cx - r, cy - r, r * 2, r * 2);
+  }
+
+  /* ----- sensor grain, hero only ----- */
+  for (let i = 0; i < 25000; i++) {
+    const a = rr(0.035, 0.12).toFixed(3);
+    ctx.fillStyle = rnd() < 0.5 ? `rgba(255,255,255,${a})` : `rgba(0,0,0,${a})`;
+    const s = rnd() < 0.85 ? 2 : 3;
+    ctx.fillRect(rnd() * W, rnd() * H, s, s);
+  }
+  for (let i = 0; i < 11500; i++) { /* fine pass */
+    const a = rr(0.02, 0.07).toFixed(3);
+    ctx.fillStyle = rnd() < 0.5 ? `rgba(255,255,255,${a})` : `rgba(0,0,0,${a})`;
+    ctx.fillRect(rnd() * W, rnd() * H, 1, 1);
+  }
+
+  window.__sceneReady = true;
+})();
+</script>
+</body>
+</html>
